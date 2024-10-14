@@ -2,17 +2,18 @@
 
 namespace App\Jobs;
 
+use App\Models\Todo;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
-class ProcessTodo implements ShouldQueue
+class UpdateTodoJob implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(private $priority)
+    public function __construct(private $validatedData,private Todo $todo)
     {
         //
     }
@@ -22,10 +23,6 @@ class ProcessTodo implements ShouldQueue
      */
     public function handle(): void
     {
-        if ($this->priority === 'high') {
-            // Handle with Redis
-        } else {
-            // Handle with MySQL
-        }
+        $this->todo->update($this->validatedData);
     }
 }
