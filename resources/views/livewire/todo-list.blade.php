@@ -58,7 +58,8 @@
                 <td>{{ $todo->title }}</td>
                 <td>{{ $todo->description }}</td>
                 <td>
-                    <select class="form-control statusChanging">
+                    <select class="form-control statusChanging" wire:model="status"
+                            wire:change="changeStatus({{$todo->id}})">
                         <option value="pending" {{$todo->status=='pending'?'selected':''}}>Pending</option>
                         <option value="completed" {{$todo->status=='completed'?'selected':''}}>Completed</option>
                     </select>
@@ -78,4 +79,40 @@
         @endforeach
         </tbody>
     </table>
+
+
 </div>
+
+
+<script src="{{asset('build/assets/echo-O7Mzt450.js')}}"></script>
+
+
+<script>
+
+    Echo.channel('addTask')
+        .listen('AddNewTask', (e) => {
+            alert("A new task published : "+e.todo.title);
+        });
+
+
+    Echo.channel('updateTask')
+        .listen('UpdateTask', (e) => {
+            alert("A task is updated : "+e.todo.title);
+        });
+
+
+
+    Echo.channel('deleteTodo')
+        .listen('DeleteTodo', (e) => {
+            alert("A task is deleted : "+e.title);
+        });
+
+
+    Echo.channel('change-todo-status')
+        .listen('ChangeTodoStatus', (e) => {
+            alert("Status of "+e.todo.title+" task is changed ");
+        });
+
+
+
+</script>

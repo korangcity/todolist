@@ -65,40 +65,40 @@ return [
 
         'redis' => [
             'driver' => 'redis',
-            'connection' => env('REDIS_QUEUE_CONNECTION', 'default'),
-            'queue' => env('REDIS_QUEUE', 'default'),
-            'retry_after' => (int) env('REDIS_QUEUE_RETRY_AFTER', 90),
+            'connection' => 'default',
+            'queue' => env('REDIS_QUEUE', 'high'),
+            'retry_after' => 90,
             'block_for' => null,
-            'after_commit' => false,
+
         ],
 
     ],
 
     'queues' => [
         'high' => [
-            'connection' => 'redis',
+            'driver' => 'redis',
             'queue' => 'high',
         ],
         'medium' => [
-            'connection' => 'database',
+            'driver' => 'mysql',
             'queue' => 'medium',
         ],
         'low' => [
-            'connection' => 'database',
+            'driver' => 'mysql',
             'queue' => 'low',
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Job Batching
-    |--------------------------------------------------------------------------
-    |
-    | The following options configure the database and table that store job
-    | batching information. These options can be updated to any database
-    | connection and table which has been defined by your application.
-    |
-    */
+            /*
+            |--------------------------------------------------------------------------
+            | Job Batching
+            |--------------------------------------------------------------------------
+            |
+            | The following options configure the database and table that store job
+            | batching information. These options can be updated to any database
+            | connection and table which has been defined by your application.
+            |
+            */
 
     'batching' => [
         'database' => env('DB_CONNECTION', 'sqlite'),

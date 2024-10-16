@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\AddNewTask;
 use App\Models\Todo;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -23,6 +24,7 @@ class StoreTodoJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Todo::create($this->validatedData);
+        $todo=Todo::create($this->validatedData);
+        event(new AddNewTask($todo));
     }
 }

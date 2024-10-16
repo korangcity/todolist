@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\UpdateTask;
 use App\Models\Todo;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -24,5 +25,6 @@ class UpdateTodoJob implements ShouldQueue
     public function handle(): void
     {
         $this->todo->update($this->validatedData);
+        event(new UpdateTask($this->todo));
     }
 }
