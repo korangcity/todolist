@@ -60,7 +60,7 @@
                 <td>
                     <select class="form-control statusChanging" wire:model="status"
                             wire:change="changeStatus({{$todo->id}})">
-                        <option value="pending" {{$todo->status=='pending'?'selected':''}}>Pending</option>
+                        <option value="pending"  {{$todo->status=='pending'?'selected':''}}>Pending</option>
                         <option value="completed" {{$todo->status=='completed'?'selected':''}}>Completed</option>
                     </select>
 
@@ -110,7 +110,7 @@
 
     Echo.channel('change-todo-status')
         .listen('ChangeTodoStatus', (e) => {
-            alert("Status of "+e.todo.title+" task is changed ");
+            alert("Status of "+e.todo.title+" task is updated : ");
         });
 
 
