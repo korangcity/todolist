@@ -19,7 +19,7 @@
                       placeholder="Description"></textarea>
         </div>
         <div class="col-auto">
-            <label for="end_date" class="">end_date</label>
+            <label for="end_date" class="">end_date (Miladi)</label>
             <input class="form-control" type="text" id="end_date" wire:model="end_date">
         </div>
         <div class="col-auto">
