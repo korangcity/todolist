@@ -109,7 +109,6 @@ class TodoList extends Component
         $this->priority = 'medium';
     }
 
-
     public function changeStatus($id,ChangeStatusTask $changeStatusTask)
     {
         try {
